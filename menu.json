@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "name": "Espresso",
+      "price": 2.50,
+      "description": "Rich and bold single shot of espresso.",
+      "category": "Coffee"
+    },
+    {
+      "name": "Cappuccino",
+      "price": 4.00,
+      "description": "Espresso with steamed milk and a deep layer of foam.",
+      "category": "Coffee"
+    },
+    {
+      "name": "Caffe Latte",
+      "price": 4.50,
+      "description": "Smooth espresso with steamed milk and a light touch of foam.",
+      "category": "Coffee"
+    },
+    {
+      "name": "Mocha",
+      "price": 5.00,
+      "description": "Espresso combined with rich chocolate syrup and steamed milk.",
+      "category": "Coffee"
+    },
+    {
+      "name": "Buttery Croissant",
+      "price": 3.00,
+      "description": "Freshly baked, flaky, and golden pastry.",
+      "category": "Bakery"
+    }
+  ]
+}
