@@ -18,7 +18,10 @@ if prompt := st.chat_input("What can I get for you?"):
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = root_agent(prompt)
+            try:
+                response = root_agent(prompt)
+            except Exception as e:
+                response = f"An error occurred: {e}"
             st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
-        
+
