@@ -1,15 +1,16 @@
-import os
 import streamlit as st
 from agent import root_agent
 
-# Ensure Streamlit secrets are explicitly mapped to the environment variable
-if "GEMINI_API_KEY" in st.secrets:
-    os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
-elif "GOOGLE_API_KEY" in st.secrets:
-    os.environ["GEMINI_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
-
 st.title("☕ AI Coffee Barista")
 st.write("Welcome! Ask me anything about our menu or recommendations.")
+
+# Safely extract the API key from Streamlit secrets
+api_key = None
+if hasattr(st, "secrets"):
+    if "GEMINI_API_KEY" in st.secrets:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    elif "GOOGLE_API_KEY" in st.secrets:
+        api_key = st.secrets["GOOGLE_API_KEY"]
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -26,10 +27,11 @@ if prompt := st.chat_input("What can I get for you?"):
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             try:
-                response = root_agent(prompt)
+                response = root_agent(prompt, api_key=api_key)
             except Exception as e:
                 response = f"An error occurred: {e}"
             st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 
