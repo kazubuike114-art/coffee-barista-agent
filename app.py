@@ -17,8 +17,8 @@ if prompt := st.chat_input("What can I get for you?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = root_agent(prompt)
+            st.markdown(response)
+        st.session_state.messages.append({"role": "assistant", "content": response})
         
-    with st.spinner("Thinking..."):
-        response = root_agent(prompt)
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
