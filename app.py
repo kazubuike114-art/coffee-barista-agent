@@ -17,7 +17,8 @@ if prompt := st.chat_input("What can I get for you?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        # Placeholder response handling agent logic
-        response = "Hello! I am your AI Barista. Let me check the menu for you."
+        with st.chat_message("assistant"):
+    with st.spinner("Thinking..."):
+        response = root_agent(prompt)
         st.markdown(response)
-        st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": response})
